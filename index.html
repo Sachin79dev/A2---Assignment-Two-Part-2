@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Drinks UI</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #050505;
+            font-family: "Inter", sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            margin: auto;
+            padding: 40px 55px 0;
+            background:
+                radial-gradient(circle at top, rgba(255, 122, 0, 0.08), transparent 35%),
+                #050505;
+        }
+
+        /* ================= HEADER ================= */
+
+        .heading-wrap {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .heading-wrap h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 78px;
+            font-weight: 600;
+            line-height: 1;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+
+        .line {
+            width: 180px;
+            height: 2px;
+            background: #ffa73f;
+            margin: auto;
+            position: relative;
+            border-radius: 60%;
+        }
+
+        .line::before {
+            content: "❦";
+            position: absolute;
+            left: 50%;
+            top: -16px;
+            transform: translateX(-50%);
+            color: #ff8a00;
+            font-size: 24px;
+            background: #140c05;
+            padding: 0 10px;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: flex;
+            gap: 28px;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            flex: 1;
+            background: linear-gradient(180deg, #161616, #090909);
+            border-radius: 30px;
+            padding: 24px 24px 28px;
+            position: relative;
+            min-height: 520px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow:
+                0 0 0 1px rgba(255, 145, 0, 0.05),
+                0 0 40px rgba(255, 136, 0, 0.08);
+            overflow: hidden;
+            transition: 0.2ms ease-in-out;
+        }
+
+        .card:hover {
+            border: 1px solid #ff8a00;
+            box-shadow: inset 0px -14px 20px 2px rgb(255 136 0 / 24%), 0 0 40px rgba(255, 136, 0, 0.18);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #ff8a00;
+            color: #ff8a00;
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .drink-img {
+            width: 100%;
+            max-width: 240px;
+            margin: 0 auto 20px;
+            height: 300px;
+            object-fit: contain;
+        }
+
+        .card h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            text-align: center;
+            color: #9a9a9a;
+            font-size: 20px;
+            margin-bottom: 18px;
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        .small-line {
+            width: 60px;
+            height: 2px;
+            background: #ff8a00;
+            margin: 0 auto 24px;
+        }
+
+        .price {
+            text-align: center;
+            color: #ff8a00;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* ================= SPECIAL SECTION ================= */
+
+        .special-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background: linear-gradient(90deg, #111111, #070707);
+            border-radius: 32px;
+            padding: 35px 45px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .special-left {
+            width: 20%;
+        }
+
+        .special-left img {
+            max-width: 320px;
+        }
+
+        .special-content {
+            flex: 1;
+            /* max-width: 650px; */
+        }
+
+        .special-content span {
+            color: #ff8a00;
+            letter-spacing: 5px;
+            font-size: 18px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+
+        .special-content h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 58px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .special-content h2 strong {
+            font-weight: 700;
+        }
+
+        .special-content p {
+            color: #9b9b9b;
+            font-size: 24px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            width: fit-content;
+            padding: 18px 34px;
+            border: 1px solid #ff8a00;
+            border-radius: 50px;
+            color: #ff8a00;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ff8a00;
+            color: #000;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            border-top: 1px solid rgba(255, 138, 0, 0.35);
+            padding: 28px 0;
+        }
+
+        .footer-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #b7b7b7;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .dot {
+            color: #ff8a00;
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .socials div {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #ff8a00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff8a00;
+            font-size: 18px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1200px) {
+            .cards {
+                flex-wrap: wrap;
+            }
+
+            .card {
+                min-width: calc(50% - 14px);
+            }
+
+            .special-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .special-left {
+                width: 100%;
+            }
+
+            .btn {
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .heading-wrap h1 {
+                font-size: 54px;
+            }
+
+            .card {
+                min-width: 100%;
+            }
+
+            .special-content h2 {
+                font-size: 42px;
+            }
+
+            .special-content p {
+                font-size: 18px;
+            }
+
+            .footer-wrap {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <div class="heading-wrap">
+            <h1>Gunaforycter</h1>
+            <div class="line"></div>
+        </div>
+
+        <!-- CARDS -->
+
+        <div class="cards">
+
+            <div class="card active">
+                <div class="tag">★ Signature</div>
+
+                <img class="drink-img" src="img/orange.png" alt="drink" />
+
+                <h2>Sunset Flame</h2>
+                <div class="sub">Tropical & Refreshing</div>
+                <div class="small-line"></div>
+
+                <div class="price">$12.94</div>
+            </div>
+
+            <div class="card">
+                <div class="tag" style="border: none;height: 37px;"></div>
+                <img class="drink-img" src="img/pink.png" alt="drink" />
+
+                <h2>Tropical Passion</h2>
+                <div class="sub">Fruity & Exotic</div>
+                <div class="small-line"></div>
+
+                <div class="price">$11.04</div>
+            </div>
+
+            <div class="card">
+                <div class="tag" style="border: none;height: 37px;"></div>
+                <img class="drink-img" src="img/red-d.png" alt="drink" />
+
+                <h2>Citrus Dawn</h2>
+                <div class="sub">Citrusy & Energizing</div>
+                <div class="small-line"></div>
+
+                <div class="price">$10.13</div>
+            </div>
+
+            <div class="card">
+                <div class="tag">● New</div>
+
+                <img class="drink-img" src="img/orange.png" alt="drink" />
+
+                <h2>Berry Breeze</h2>
+                <div class="sub">Sweet & Cool</div>
+                <div class="small-line"></div>
+
+                <div class="price">$9.48</div>
+            </div>
+        </div>
+
+        <!-- SPECIAL SECTION -->
+
+        <div class="special-box">
+
+            <div class="special-left">
+                <img src="img/vadim-markin-Dn82UF7qsso-unsplash-removebg-preview (1).png" alt="food" />
+            </div>
+
+            <div class="special-content">
+                <span>CHEF'S SPECIAL</span>
+
+                <h2>Bouliauts for laguancns</h2>
+
+                <p>
+                    Experience our signature culinary creations.
+                    <br /><br />
+                    Meticulously crafted with premium ingredients to deliver
+                    exceptional flavors and an unforgettable dining experience.
+                    Perfect for sharing or savoring on your own.
+                </p>
+
+                <div class="btn">
+                    Explore Menu →
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+
+        <footer>
+            <div class="footer-wrap">
+
+                <div>© Gunaforycter 2025</div>
+
+                <div class="footer-links">
+                    <span>Explore</span>
+                    <span class="dot">•</span>
+
+                    <span>Food Menu</span>
+                    <span class="dot">•</span>
+
+                    <span>Drinks</span>
+                    <span class="dot">•</span>
+
+                    <span>Reservations</span>
+                </div>
+
+                <div class="socials">
+                    <span>Follow Us</span>
+
+                    <div>◎</div>
+                    <div>f</div>
+                    <div>𝕏</div>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
